@@ -24,10 +24,10 @@ function App() {
   }, []);
 
   return (
-    <>
+    <section className="app">
       <BreedSelector breeds={breeds} setSelectedBreedId={setSelectedBreedId} />
       <CatGallery selectedBreedId={selectedBreedId} />
-    </>
+    </section>
   );
 }
 

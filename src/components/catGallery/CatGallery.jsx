@@ -1,3 +1,4 @@
+import "./CatGallery.scss";
 import { useState, useEffect } from "react";
 import ajaxService from "../../models/services/ajaxService";
 import reactLogo from "../../assets/react.svg";
@@ -27,19 +28,29 @@ const CatGallery = ({ selectedBreedId }) => {
   }, [selectedBreedId]);
 
   return (
-    <div>
+    <div className="cat-gallery">
       {loading ? (
-        <img src={reactLogo} alt="React Logo" className="loading" />
+        <img
+          src={reactLogo}
+          alt="React Logo"
+          className="cat-gallery__loading"
+        />
       ) : (
-        <div>
-          {images.length > 0 ? (
-            images.map((image) => (
-              <div key={image.id}>
-                <img src={image.url} alt={image.breeds?.[0]?.name || "Cat"} />
-              </div>
-            ))
+        <div className="cat-gallery__images">
+          {selectedBreedId ? (
+            images.length > 0 ? (
+              images.map((image) => (
+                <div key={image.id} className="cat-gallery__image">
+                  <img src={image.url} alt={image.breeds?.[0]?.name || "Cat"} />
+                </div>
+              ))
+            ) : (
+              <p className="cat-gallery__no-images">
+                No images found for this breed.
+              </p>
+            )
           ) : (
-            <p>No images found for this breed.</p>
+            <></>
           )}
         </div>
       )}
